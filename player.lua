@@ -85,12 +85,14 @@ function new(x, y, w, h, angle, hp)
 	end
 	
 	object.check = function()
+		--remove out of bounds bullets
 		for f, k in pairs(object.bullets) do
 			if k.x < -5 or k.x > 1600 + 5 or k.y < -5 or k.y > 900 + 5 then
 				table.remove(object.bullets, f)
 			end
 		end
 		
+		--update gun positions based on player rotation and position
 		for k, l in pairs(p.guns) do
 			local distance = math.sqrt(l.offx * l.offx + l.offy * l.offy)
 			local x = object.x + (math.sin(object.angle - l.angle) * distance)

@@ -15,6 +15,7 @@ function love.load()
 end
 
 function love.update()
+	-- camera stops following player movement when player is near the borders of the map
 	if p.x > 500 and p.x < 1100 then
 		offx = p.x
 	end
@@ -31,6 +32,7 @@ function love.update()
 		p.shoot()
 	end
 	
+	-- spawn a new enemy every 10 frames/updates
 	if spawn <= 0 then
 		enemies[#enemies + 1] = enemy.new(0, 1600, 0, 900, 10, 30)
 		spawn = 10
@@ -112,6 +114,7 @@ function love.draw()
 		love.graphics.pop()
 	end
 
+	--[[
 	love.graphics.print(p.score, offx - love.graphics.getWidth() / 2, offy - love.graphics.getHeight() / 2)
 	love.graphics.print(p.x, offx - love.graphics.getWidth() / 2, 10 + offy - love.graphics.getHeight() / 2)
 	love.graphics.print(p.y, offx - love.graphics.getWidth() / 2, 20 + offy - love.graphics.getHeight() / 2)
@@ -121,6 +124,7 @@ function love.draw()
 	if #p.bullets > 0 then
 		love.graphics.print(p.bullets[#p.bullets].a, offx - love.graphics.getWidth() / 2, 60 + offy - love.graphics.getHeight() / 2)
 	end
+	--]]
 	
 	love.graphics.origin()
 end
